@@ -26,8 +26,10 @@ class ClipboardGUI:
 
 
     def create_labels(self):
+        max_length = 20
         for element in self.elements:
-            label = tk.Label(self.root, text=element, font=('Arial', 12), padx=10, pady=6, relief=tk.RAISED)
+            text_label = element[:max_length] + '...' if len(element) > max_length else element
+            label = tk.Label(self.root, text=text_label, font=('Arial', 11), padx=10, pady=7, relief=tk.RAISED)
             label.pack(fill=tk.X)  # Make the label expand horizontally
             label.bind('<Button-1>', self.label_click)
 
