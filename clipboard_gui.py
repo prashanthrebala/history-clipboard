@@ -1,3 +1,5 @@
+from utils.text_processor import truncate_text
+
 import tkinter as tk
 import pyperclip
 
@@ -19,19 +21,17 @@ class ClipboardGUI:
         self.create_labels()
 
 
-    def label_click(self, event):
-        clicked_label = event.widget
-        pyperclip.copy(clicked_label["text"])
+    def label_click(self, text):
+        pyperclip.copy(text)
         self.close()
 
 
     def create_labels(self):
         max_length = 20
         for element in self.elements:
-            text_label = element[:max_length] + '...' if len(element) > max_length else element
-            label = tk.Label(self.root, text=text_label, font=('Arial', 11), padx=10, pady=7, relief=tk.RAISED)
+            label = tk.Label(self.root, text=truncate_text(element, max_length), font=('Arial', 11), padx=10, pady=7, relief=tk.RAISED)
             label.pack(fill=tk.X)  # Make the label expand horizontally
-            label.bind('<Button-1>', self.label_click)
+            label.bind('<Button-1>', lambda: self.label_click(element))
 
 
     def run(self):

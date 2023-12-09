@@ -16,7 +16,7 @@ def safe_open_w(path):
 
 def on_ctrl_c():
     clipboard_item = pyperclip.paste()
-    if clipboard_item == "" or clipboard_item == clipboard_history[-1]:
+    if clipboard_item == "" or clipboard_history and clipboard_item == clipboard_history[-1]:
         return
     clipboard_history.append(clipboard_item)
     with safe_open_w(file_path) as file:
