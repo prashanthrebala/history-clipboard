@@ -15,12 +15,15 @@ def safe_open_w(path):
     return open(path, 'w')
 
 def on_ctrl_c():
-    clipboard_history.append(pyperclip.paste())
+    clipboard_item = pyperclip.paste()
+    if clipboard_item == "" or clipboard_item == clipboard_history[-1]:
+        return
+    clipboard_history.append(clipboard_item)
     with safe_open_w(file_path) as file:
         json.dump(clipboard_history, file, indent=2)
 
 def open_history():
-    cgui = ClipboardGUI(clipboard_history)
+    cgui = ClipboardGUI(clipboard_history[::-1])
     cgui.run()
 
 
