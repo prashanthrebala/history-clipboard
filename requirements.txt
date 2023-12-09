@@ -1,5 +1,13 @@
+appdirs==1.4.4
+blessed==1.20.0
 evdev==1.6.1
+flyingcircus==0.1.4.1
+packaging==23.2
 pynput==1.7.6
 pyperclip==1.8.2
 python-xlib==0.33
+setuptools-scm==8.0.4
 six==1.16.0
+tomli==2.0.1
+typing_extensions==4.8.0
+wcwidth==0.2.12
