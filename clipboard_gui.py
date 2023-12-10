@@ -31,7 +31,7 @@ class ClipboardGUI:
         for element in self.elements:
             label = tk.Label(self.root, text=truncate_text(element, max_length), font=('Arial', 11), padx=10, pady=7, relief=tk.RAISED)
             label.pack(fill=tk.X)  # Make the label expand horizontally
-            label.bind('<Button-1>', lambda: self.label_click(element))
+            label.bind('<Button-1>', lambda e, text=element: self.label_click(text))
 
 
     def run(self):
